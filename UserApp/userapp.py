@@ -3,8 +3,6 @@ from flask_mysqldb import MySQL
 from datetime import datetime
 import pika
 
-
-
 app = Flask (__name__)
 
 # MySQL configuration
@@ -52,7 +50,7 @@ def add_user():
 
     channel.basic_publish(exchange='', routing_key='CustomerTerima', body='Data telah dikirim ke Customer!')
     print(" [x] Sent 'Data Telah Ditambahkan ke Customer!'")
-    
+
     connection.close()
     
     return generate_response(201, 'User added successfully')
@@ -111,4 +109,4 @@ def deleteuser():
         return generate_response(400, 'Could not delete user')
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5002)
+    app.run(debug=True, host ='0.0.0.0', port=5006)
